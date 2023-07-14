@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container position-absolute top-50 start-50 translate-middle">
+    <div class="row justify-content-center">
+        <div class="col-6 text-center">
+            {% if form %}
+                <form method="POST" action="/">
+                    {{ form.csrf_token }}
+
+                    {{ form.url.label }}
+                    {{ form.url }}
+
+                    {% if form.url.errors %}
+                        <ul class=errors>
+                            {% for error in form.url.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <input type="submit" class="btn btn-primary" value="Generate">
+                </form>
+            {% elif url %}
+                <a href="{{ url }}" target="_blank">{{ url }}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
