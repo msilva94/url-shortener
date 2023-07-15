@@ -1,6 +1,6 @@
 from flask import abort, redirect, render_template, url_for
 
-from url_shortener import app, db
+from url_shortener import app
 
 from .forms import URLShortenerForm
 from .models import URL
