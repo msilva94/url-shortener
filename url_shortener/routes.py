@@ -4,6 +4,7 @@ from url_shortener import app
 
 from .forms import URLShortenerForm
 from .models import URL
+from .utils import get_or_create_url
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -11,7 +12,7 @@ def home():
     form = URLShortenerForm()
     context = {}
     if form.validate_on_submit():
-        url = URL.get_or_create_url(form.url.data)
+        url = get_or_create_url(form.url.data)
         context["url"] = url_for("hash", hash=url.hash, _external=True)
     else:
         context["form"] = form
